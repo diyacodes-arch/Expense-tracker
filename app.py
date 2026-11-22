@@ -223,10 +223,31 @@ while True:
         start_date=input("enter start date(YYYY-MM-DD) :")
         end_date=input("enter end date(YYYY-MM-DD) :")
 
-        start_date=datetime.strptime(start_text,"%Y-%m-%d").date()
-        end_date=datetime.strptime(end_text,"%Y-%m-%d").date()
+        start_date=datetime.strptime(start_date,"%Y-%m-%d").date()
+        end_date=datetime.strptime(end_date,"%Y-%m-%d").date()
+        if start_date > end_date:
+            print("Start date can not be greater than end date")
+        else:
+            cursor.execute(
+                """
+                SELECT * FROM expenses
+                WHERE expense_date BETWEEN %s and %s                                        
+                 """,(start_date,end_date)
+            )
+            results=cursor.fetchall()
 
-    
+        if not results:
+            print("No expense found!")
+
+        else:
+           for row in results:
+            print("ID :",row[0])
+            print("Amount :",row[1])
+            print("Category :",row[2])
+            print("Description :",row[3])
+            print("Expense date :",row[4])
+            
+            
 
 
           
