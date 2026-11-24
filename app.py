@@ -31,7 +31,8 @@ while True:
     print(" 6.Category wise summary")
     print(" 7.Search expenses by date") 
     print(" 8.Custom expense range") 
-    print(" 9.Exit")
+    print(" 9.Expense Statistics") 
+    print(" 10.Exit")
     choice=input("enter your choice :")
 
 
@@ -248,13 +249,19 @@ while True:
             print("Expense date :",row[4])
             
             
+    elif choice=="9":
+        print("Expenses Statistics")
+        cursor.execute(
+            """
+            SELECT COUNT(*),SUM(amount),MAX(amount),MIN(amount),AVG(amount)
+            FROM expenses          
+        """)
+        results=cursor.fetchone()
+        total_expense,total_spending,max_spending,min_spending,avg_spending =results
+                   
 
 
-          
-       
-
-
-    elif choice =="9":
+    elif choice =="10":
         print("you have successfully exited")
         connection.close()
         break
