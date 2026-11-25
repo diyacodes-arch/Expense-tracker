@@ -258,7 +258,15 @@ while True:
         """)
         results=cursor.fetchone()
         total_expense,total_spending,max_spending,min_spending,avg_spending =results
-                   
+        print("Total Expense :",total_expense)
+        print("Total Spending :",total_spending)
+        print("Max Spending :",max_spending)  
+        print("Min Spending :",min_spending) 
+        print("Avg Spending :",avg_spending)          
+
+
+
+
 
 
     elif choice =="10":
